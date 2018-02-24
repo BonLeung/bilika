@@ -28,7 +28,10 @@
             margin: 9px 0 0 10px;
             width: 63px;
             height: 27px;
-            background: #ff0000;
+        }
+        header ul li .logo-wrapper img {
+            width: 100%;
+            height: 100%;
         }
 
         header ul li .operator-wrapper {
@@ -38,12 +41,25 @@
 
         header ul li .operator-wrapper span {
             display: inline-block;
-            vertical-align: top;
-            padding: 26px 7px 4px;
-            margin: 0 3px;
-            font-size: 10px;
-            line-height: 14px;
+            vertical-align: bottom;
+            margin-left: 17px;
+            margin-top: 7px;
             background: url() no-repeat center 6px;
+        }
+
+        header ul li .operator-wrapper span:nth-child(1) {
+            width: 39px;
+            height: 31px;
+            background: url(./image/icon-select-currency.png) no-repeat center;
+            background-size: 39px 31px;
+        }
+
+        header ul li .operator-wrapper span:nth-child(2) {
+            width: 20px;
+            height: 31px;
+            margin-right: 10px;
+            background: url(./image/icon-kefu.png) no-repeat center;
+            background-size: 20px 31px;
         }
 
         header ul li .header-search {
@@ -54,8 +70,12 @@
             height: 30px;
             line-height: 30px;
             padding-left: 34px;
-            background-color: #fff0f0;
             border-radius: 4px;
+            background-image: url(./image/icon-search.png);
+            background-repeat: no-repeat;
+            background-position: 12px 8px;
+            background-color: #fff0f0;
+            background-size: 12px 14px;
         }
 
         header ul li .header-search__content span {
@@ -71,49 +91,41 @@
         }
 
         #footer ul li {
-            padding-top: 32px;
-            padding-bottom: 6px;
-            background: url() no-repeat center 7px;
-            background-size: auto 20px;
-            text-align: center;
-            font-size: 11px;
-            color: #999999;
-        }
-
-        #footer ul li.active {
-            color: #f05b8c;
+            height: 50px;
+            background: url() no-repeat center;
+            background-size: 22px auto;
         }
 
         #footer ul li:nth-child(1) {
-            background-image: url(./image/bottombtn0101.png);
+            background-image: url(./image/footer-btn-01.png);
         }
 
         #footer ul li:nth-child(2) {
-            background-image: url(./image/bottombtn0201.png);
+            background-image: url(./image/footer-btn-02.png);
         }
 
         #footer ul li:nth-child(3) {
-            background-image: url(./image/bottombtn0301.png);
+            background-image: url(./image/footer-btn-03.png);
         }
 
         #footer ul li:nth-child(4) {
-            background-image: url(./image/bottombtn0401.png);
+            background-image: url(./image/footer-btn-04.png);
         }
 
         #footer ul li:nth-child(1).active {
-            background-image: url(./image/bottombtn0102.png);
+            background-image: url(./image/footer-btn-01-active.png);
         }
 
         #footer ul li:nth-child(2).active {
-            background-image: url(./image/bottombtn0202.png);
+            background-image: url(./image/footer-btn-02-active.png);
         }
 
         #footer ul li:nth-child(3).active {
-            background-image: url(./image/bottombtn0302.png);
+            background-image: url(./image/footer-btn-03-active.png);
         }
 
         #footer ul li:nth-child(4).active {
-            background-image: url(./image/bottombtn0402.png);
+            background-image: url(./image/footer-btn-04-active.png);
         }
 
         .flex-con {
@@ -129,11 +141,11 @@
                 <li class="active header-item-hook">
                     <div class="topbar clearfix">
                         <div class="logo-wrapper">
-                            <img src="" alt="">
+                            <img src="./image/logo.png" alt="">
                         </div>
                         <div class="operator-wrapper flex-wrap">
-                            <span>货币选择</span>
-                            <span>客服</span>
+                            <span></span>
+                            <span></span>
                         </div>
                     </div>
                     <div class="header-search">
@@ -142,9 +154,9 @@
                         </div>
                     </div>
                 </li>
-                <li class="header-item-hook">端API</li>
-                <li class="header-item-hook">开发</li>
-                <li class="header-item-hook">文档</li>
+                <li class="header-item-hook">搜索</li>
+                <li class="header-item-hook">订单</li>
+                <li class="header-item-hook">我的</li>
             </ul>
         </header>
         <div id="main" class="flex-con">
@@ -152,10 +164,10 @@
         </div>
         <div id="footer">
             <ul class="flex-wrap">
-                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="footer-item-hook flex-con active">游戏</li>
-                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="footer-item-hook flex-con">搜索</li>
-                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="footer-item-hook flex-con">订单</li>
-                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="footer-item-hook flex-con">我的</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="footer-item-hook flex-con active"></li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="footer-item-hook flex-con"></li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="footer-item-hook flex-con"></li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="footer-item-hook flex-con"></li>
             </ul>
         </div>
     </div>
@@ -177,12 +189,12 @@
         headers = $api.domAll(header, '.header-item-hook')
         footers = $api.domAll(footer, '.footer-item-hook')
 
-        $api.fixStatusBar($api.dom('header'));
+        $api.fixStatusBar($api.dom('header'))
         $api.fixTabBar($api.dom('#footer'))
         api.setStatusBarStyle({
             style: 'dark',
             color: '#fff'
-        });
+        })
 
         footerHeight = $api.offset(footer).h
     }
@@ -209,7 +221,7 @@
             index: 0,
             frames: frames
         }, function(ret, err) {
-            
+
         });
     }
 
@@ -246,13 +258,12 @@
                 w: 'auto',
                 h: $api.dom('#main').offsetHeight
             }
-        });
+        })
         api.setFrameGroupIndex({
             name: 'group',
             index: index,
             scroll: true
-        });
+        })
     }
-
 
 </script>

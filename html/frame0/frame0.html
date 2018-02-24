@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>云API</title>
+    <title>主页</title>
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../../css/style.css" />
     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
@@ -20,23 +20,14 @@
         /* slider start */
         #slider {
             margin: 0 10px 0;
-            height: 178px;
+            overflow: visible;
+            overflow-x: hidden;
         }
 
         .swiper-slide {
-            overflow: hidden;
             width: 100%;
             height: 178px;
             border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .swiper-slide:nth-child(2) {
-            background: green;
-        }
-
-        .swiper-slide:nth-child(3) {
-            background: blue;
         }
 
         .swiper-slide img {
@@ -44,10 +35,39 @@
             height: 178px;
         }
 
+        .slider-item {
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .slider-item .bg-wrapper {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 3px;
+            right: 0;
+            z-index: -2;
+            border-radius: 8px;
+            transform: scale(0.95);
+            filter: blur(6px);
+            -webkit-filter: blur(6px);
+        }
+        .slider-item .bg-shadow {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: -3px;
+            right: 0;
+            z-index: -1;
+            border-radius: 8px;
+            transform: scale(0.95);
+            background-image: linear-gradient(to top, rgba(238, 238, 238, 0), rgba(0, 0, 0, 0.5));
+        }
+
         .indicator {
             height: 5px;
             width: 18px;
-            margin: 0 5px;
+            margin: 0 5px 5px;
             border-radius: 2px;
             background: rgba(255, 255, 255, 0.5);
         }
@@ -60,7 +80,7 @@
         /* nav start */
         #nav ul {
             flex-wrap: wrap;
-            padding: 8px 0 23px 0;
+            padding: 0 0 23px 0;
         }
 
         #nav ul li {
@@ -112,20 +132,47 @@
             background: #f05b8c;
         }
 
+        .like-list-container {
+
+        }
+
         .like-list {
             padding: 0 10px;
         }
 
         .like-item {
+            position: relative;
             flex: 0 0 145px;
             width: 145px;
             height: 87px;
             margin-right: 10px;
             border-radius: 4px;
+            padding-bottom: 10px;
             overflow: hidden;
         }
 
         .like-item img {
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+
+        .like-item .bg-wrapper {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 2px;
+            right: 0;
+            z-index: -1;
+            border-radius: 4px;
+            transform: scale(0.9);
+            -webkit-transform: scale(0.9);
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+            opacity: 0.9;
+        }
+
+        .bg-wrapper img {
             width: 100%;
             height: 100%;
         }
@@ -143,14 +190,34 @@
             left: 10px;
             top: 50%;
             transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
             width: 64px;
             height: 64px;
             z-index: 10
         }
-        .recommend-item .image-wrapper > img {
+        .recommend-item .image-wrapper img {
             width: 100%;
             height: 100%;
             border-radius: 4px;
+        }
+
+        .recommend-item .img-box {
+            position: relative;
+            width: 64px;
+            height: 64px;
+        }
+        .recommend-item .bg-wrapper {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: -5px;
+            right: 0;
+            z-index: -1;
+            border-radius: 4px;
+            transform: scale(0.9);
+            -webkit-transform: scale(0.9);
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
         }
 
         .recommend-item .goods-detail {
@@ -202,19 +269,23 @@
 <body>
     <section id="slider" class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="imge-wrapper">
-                    <img src="../../image/frame1/ads/ad1.png" alt="">
+            <div class="swiper-slide slider-item">
+                <img src="../../image/frame1/ads/ad01.png" alt="">
+                <div class="bg-wrapper">
+                    <img src="../../image/frame1/ads/ad01.png" alt="">
                 </div>
             </div>
-            <div class="swiper-slide">
-                <div class="image-wrapper">
-                    <img src="" alt="">
+            <div class="swiper-slide slider-item">
+                <img src="../../image/frame1/ads/ad02.png" alt="">
+                <div class="bg-wrapper">
+                    <img src="../../image/frame1/ads/ad02.png" alt="">
                 </div>
+                <div class="bg-shadow"></div>
             </div>
-            <div class="swiper-slide">
-                <div class="image-wrapper">
-                    <img src="" alt="">
+            <div class="swiper-slide slider-item">
+                <img src="../../image/frame1/ads/ad03.png" alt="">
+                <div class="bg-wrapper">
+                    <img src="../../image/frame1/ads/ad03.png" alt="">
                 </div>
             </div>
         </div>
@@ -223,55 +294,61 @@
     <section id="nav">
         <ul class="flex-wrap">
             <li class="flex-wrap flex-vertical">
-                <img src="../../image/frame1/ads/ad1.png" alt="">
+                <img src="../../image/frame1/navs/nav01.png" alt="">
                 <span>支付宝</span>
             </li>
             <li class="flex-wrap flex-vertical">
-                <img src="" alt="">
+                <img src="../../image/frame1/navs/nav02.png" alt="">
+                <span>微信</span>
+            </li>
+            <li class="flex-wrap flex-vertical">
+                <img src="../../image/frame1/navs/nav03.png" alt="">
+                <span>苹果</span>
+            </li>
+            <li class="flex-wrap flex-vertical">
+                <img src="../../image/frame1/navs/nav04.png" alt="">
+                <span>网易宝</span>
+            </li>
+            <li class="flex-wrap flex-vertical">
+                <img src="../../image/frame1/navs/nav01.png" alt="">
                 <span>支付宝</span>
             </li>
             <li class="flex-wrap flex-vertical">
-                <img src="" alt="">
-                <span>支付宝</span>
+                <img src="../../image/frame1/navs/nav02.png" alt="">
+                <span>微信</span>
             </li>
             <li class="flex-wrap flex-vertical">
-                <img src="" alt="">
-                <span>支付宝</span>
+                <img src="../../image/frame1/navs/nav03.png" alt="">
+                <span>苹果</span>
             </li>
             <li class="flex-wrap flex-vertical">
-                <img src="" alt="">
-                <span>支付宝</span>
-            </li>
-            <li class="flex-wrap flex-vertical">
-                <img src="" alt="">
-                <span>支付宝</span>
-            </li>
-            <li class="flex-wrap flex-vertical">
-                <img src="" alt="">
-                <span>支付宝</span>
-            </li>
-            <li class="flex-wrap flex-vertical">
-                <img src="" alt="">
-                <span>支付宝</span>
+                <img src="../../image/frame1/navs/nav04.png" alt="">
+                <span>网易宝</span>
             </li>
         </ul>
     </section>
     <section id="like-and-recommend">
         <div class="like">
             <h2 class="common-title">猜你喜欢</h2>
-            <div id="like-swiper-container" class="swiper-container">
+            <div id="like-swiper-container" class="swiper-container like-list-container">
                 <div class="swiper-wrapper like-list">
                     <div class="swiper-slide like-item">
-                        <img src="../../image/frame1/ads/ad1.png" alt="">
+                        <img src="../../image/frame1/ads/ad01.png" alt="">
+                        <div class="bg-wrapper">
+                            <img src="../../image/frame1/ads/ad01.png" alt="">
+                        </div>
                     </div>
                     <div class="swiper-slide like-item">
-                        <img src="" alt="">
+                        <img src="../../image/frame1/ads/ad03.png" alt="">
+                        <div class="bg-wrapper">
+                            <img src="../../image/frame1/ads/ad03.png" alt="">
+                        </div>
                     </div>
                     <div class="swiper-slide like-item">
-                        <img src="" alt="">
-                    </div>
-                    <div class="swiper-slide like-item">
-                        <img src="" alt="">
+                        <img src="../../image/frame1/ads/ad01.png" alt="">
+                        <div class="bg-wrapper">
+                            <img src="../../image/frame1/ads/ad01.png" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -281,7 +358,12 @@
             <ul class="recommend-list">
                 <li class="recommend-item">
                     <div class="image-wrapper">
-                        <img src="../../image/frame1/ads/ad1.png" alt="">
+                        <div class="img-box">
+                            <img src="../../image/frame1/recommends/recommend01.png" alt="">
+                            <div class="bg-wrapper">
+                                <img src="../../image/frame1/recommends/recommend01.png" alt="">
+                            </div>
+                        </div>
                     </div>
                     <div class="goods-detail">
                         <div class="name">王者荣耀500点券快速充值秒速到账</div>
@@ -295,7 +377,10 @@
                 </li>
                 <li class="recommend-item">
                     <div class="image-wrapper">
-                        <img src="" alt="">
+                        <img src="../../image/frame1/recommends/recommend02.png" alt="">
+                        <div class="bg-wrapper">
+                            <img src="../../image/frame1/recommends/recommend02.png" alt="">
+                        </div>
                     </div>
                     <div class="goods-detail">
                         <div class="name">王者荣耀500点券快速充值秒速到账</div>
@@ -309,7 +394,97 @@
                 </li>
                 <li class="recommend-item">
                     <div class="image-wrapper">
-                        <img src="" alt="">
+                        <img src="../../image/frame1/recommends/recommend03.png" alt="">
+                        <div class="bg-wrapper">
+                            <img src="../../image/frame1/recommends/recommend03.png" alt="">
+                        </div>
+                    </div>
+                    <div class="goods-detail">
+                        <div class="name">王者荣耀500点券快速充值秒速到账</div>
+                        <div class="buy-num">
+                            <span>153人购买</span>
+                        </div>
+                        <div class="price-box">
+                            <span class="unit">$</span><span class="price">69.00</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend-item">
+                    <div class="image-wrapper">
+                        <img src="../../image/frame1/recommends/recommend01.png" alt="">
+                        <div class="bg-wrapper">
+                            <img src="../../image/frame1/recommends/recommend01.png" alt="">
+                        </div>
+                    </div>
+                    <div class="goods-detail">
+                        <div class="name">王者荣耀500点券快速充值秒速到账</div>
+                        <div class="buy-num">
+                            <span>153人购买</span>
+                        </div>
+                        <div class="price-box">
+                            <span class="unit">$</span><span class="price">69.00</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend-item">
+                    <div class="image-wrapper">
+                        <div class="img-box">
+                            <img src="../../image/frame1/recommends/recommend02.png" alt="">
+                            <div class="bg-wrapper">
+                                <img src="../../image/frame1/recommends/recommend02.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="goods-detail">
+                        <div class="name">王者荣耀500点券快速充值秒速到账</div>
+                        <div class="buy-num">
+                            <span>153人购买</span>
+                        </div>
+                        <div class="price-box">
+                            <span class="unit">$</span><span class="price">69.00</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend-item">
+                    <div class="image-wrapper">
+                        <img src="../../image/frame1/recommends/recommend03.png" alt="">
+                        <div class="bg-wrapper">
+                            <img src="../../image/frame1/recommends/recommend03.png" alt="">
+                        </div>
+                    </div>
+                    <div class="goods-detail">
+                        <div class="name">王者荣耀500点券快速充值秒速到账</div>
+                        <div class="buy-num">
+                            <span>153人购买</span>
+                        </div>
+                        <div class="price-box">
+                            <span class="unit">$</span><span class="price">69.00</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend-item">
+                    <div class="image-wrapper">
+                        <img src="../../image/frame1/recommends/recommend01.png" alt="">
+                        <div class="bg-wrapper">
+                            <img src="../../image/frame1/recommends/recommend01.png" alt="">
+                        </div>
+                    </div>
+                    <div class="goods-detail">
+                        <div class="name">王者荣耀500点券快速充值秒速到账</div>
+                        <div class="buy-num">
+                            <span>153人购买</span>
+                        </div>
+                        <div class="price-box">
+                            <span class="unit">$</span><span class="price">69.00</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend-item">
+                    <div class="image-wrapper">
+                        <img src="../../image/frame1/recommends/recommend02.png" alt="">
+                        <div class="bg-wrapper">
+                            <img src="../../image/frame1/recommends/recommend02.png" alt="">
+                        </div>
                     </div>
                     <div class="goods-detail">
                         <div class="name">王者荣耀500点券快速充值秒速到账</div>
@@ -331,12 +506,13 @@
             fnInitSwiper();
         }
 
+        // 初始化轮播
         function fnInitSwiper() {
             var adSwiper = new Swiper('#slider', {
                 autoplay: {
                     delay: 5000,
-                    stopOnLastSlide: false,
-                    disableOnInteraction: true,
+                    stopOnLastSlide: false,    // 是否在最后一个 slide 停止轮播
+                    disableOnInteraction: false,    // 滑动之后是否停止自动轮播
                 },
                 pagination: {
                     el: '.swiper-pagination',

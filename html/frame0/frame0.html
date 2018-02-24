@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>云API</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* slider start */
+        #slider {
+            margin: 0 10px 0;
+            height: 178px;
+        }
+
+        .swiper-slide {
+            overflow: hidden;
+            width: 100%;
+            height: 178px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .swiper-slide:nth-child(2) {
+            background: green;
+        }
+
+        .swiper-slide:nth-child(3) {
+            background: blue;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 178px;
+        }
+
+        .indicator {
+            height: 5px;
+            width: 18px;
+            margin: 0 5px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .indicator-active {
+            background: rgb(255, 255, 255);
+        }
+        /* slider end */
+
+        /* nav start */
+        #nav ul {
+            flex-wrap: wrap;
+            padding: 8px 0 23px 0;
+        }
+
+        #nav ul li {
+            margin-top: 15px;
+            width: 25%;
+            text-align: center;
+            justify-content: center;
+            -webkit-justify-content: center;
+            align-items: center;
+            -webkit-align-items: center;
+        }
+
+        #nav ul li>img {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+        }
+
+        #nav ul li>span {
+            padding-top: 5px;
+            font-size: 12px;
+            line-height: 12px;
+            color: #292929;
+        }
+        /* nav end */
+
+        /* like-and-recommend start */
+        #like-and-recommend {
+            width: 100%;
+            background-color: #f6f7fc;
+        }
+
+        .common-title {
+            position: relative;
+            padding: 11px 0 10px 25px;
+            font-size: 14px;
+            font-weight: normal;
+            color: #292929;
+            line-height: 15px;
+        }
+        .common-title::before {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 5px;
+            height: 15px;
+            content: '';
+            display: block;
+            background: #f05b8c;
+        }
+
+        .like-list {
+            padding: 0 10px;
+        }
+
+        .like-item {
+            flex: 0 0 145px;
+            width: 145px;
+            height: 87px;
+            margin-right: 10px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .like-item img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .recommend {
+            margin-top: 5px;
+        }
+
+        .recommend-item {
+            position: relative;
+        }
+
+        .recommend-item .image-wrapper {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 64px;
+            height: 64px;
+            z-index: 10
+        }
+        .recommend-item .image-wrapper > img {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .recommend-item .goods-detail {
+            position: relative;
+            padding: 18px 115px 0 50px;
+            margin: 0 10px 10px 35px;
+            background: #fff;
+            border-radius: 4px;
+            min-height: 100px;
+            box-sizing: border-box;
+        }
+        .recommend-item:last-child .goods-detail {
+            margin-bottom: 0;
+        }
+
+        .recommend-item .goods-detail .name {
+            font-size: 14px;
+            line-height: 20px;
+            color: #292929;
+        }
+        .recommend-item .goods-detail .buy-num {
+            margin-top: 10px;
+            padding-left: 17px;
+            background: url() no-repeat left;
+            background-size: 23px 21px;
+            font-size: 12px;
+            color: #999;
+            line-height: 12px;
+        }
+        .recommend-item .goods-detail .price-box {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f05b8c;
+            line-height: 25px;
+            font-weight: 600;
+        }
+        .recommend-item .goods-detail .price-box .unit {
+            font-size: 14px;
+        }
+        .recommend-item .goods-detail .price-box .price {
+            font-size: 18px;
+        }
+        /* like-and-recommend end */
+    </style>
+</head>
+
+<body>
+    <section id="slider" class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="imge-wrapper">
+                    <img src="../../image/frame1/ads/ad1.png" alt="">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="image-wrapper">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="image-wrapper">
+                    <img src="" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </section>
+    <section id="nav">
+        <ul class="flex-wrap">
+            <li class="flex-wrap flex-vertical">
+                <img src="../../image/frame1/ads/ad1.png" alt="">
+                <span>支付宝</span>
+            </li>
+            <li class="flex-wrap flex-vertical">
+                <img src="" alt="">
+                <span>支付宝</span>
+            </li>
+            <li class="flex-wrap flex-vertical">
+                <img src="" alt="">
+                <span>支付宝</span>
+            </li>
+            <li class="flex-wrap flex-vertical">
+                <img src="" alt="">
+                <span>支付宝</span>
+            </li>
+            <li class="flex-wrap flex-vertical">
+                <img src="" alt="">
+                <span>支付宝</span>
+            </li>
+            <li class="flex-wrap flex-vertical">
+                <img src="" alt="">
+                <span>支付宝</span>
+            </li>
+            <li class="flex-wrap flex-vertical">
+                <img src="" alt="">
+                <span>支付宝</span>
+            </li>
+            <li class="flex-wrap flex-vertical">
+                <img src="" alt="">
+                <span>支付宝</span>
+            </li>
+        </ul>
+    </section>
+    <section id="like-and-recommend">
+        <div class="like">
+            <h2 class="common-title">猜你喜欢</h2>
+            <div id="like-swiper-container" class="swiper-container">
+                <div class="swiper-wrapper like-list">
+                    <div class="swiper-slide like-item">
+                        <img src="../../image/frame1/ads/ad1.png" alt="">
+                    </div>
+                    <div class="swiper-slide like-item">
+                        <img src="" alt="">
+                    </div>
+                    <div class="swiper-slide like-item">
+                        <img src="" alt="">
+                    </div>
+                    <div class="swiper-slide like-item">
+                        <img src="" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="recommend">
+            <h2 class="common-title">热门推荐</h2>
+            <ul class="recommend-list">
+                <li class="recommend-item">
+                    <div class="image-wrapper">
+                        <img src="../../image/frame1/ads/ad1.png" alt="">
+                    </div>
+                    <div class="goods-detail">
+                        <div class="name">王者荣耀500点券快速充值秒速到账</div>
+                        <div class="buy-num">
+                            <span>153人购买</span>
+                        </div>
+                        <div class="price-box">
+                            <span class="unit">$</span><span class="price">69.00</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend-item">
+                    <div class="image-wrapper">
+                        <img src="" alt="">
+                    </div>
+                    <div class="goods-detail">
+                        <div class="name">王者荣耀500点券快速充值秒速到账</div>
+                        <div class="buy-num">
+                            <span>153人购买</span>
+                        </div>
+                        <div class="price-box">
+                            <span class="unit">$</span><span class="price">69.00</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend-item">
+                    <div class="image-wrapper">
+                        <img src="" alt="">
+                    </div>
+                    <div class="goods-detail">
+                        <div class="name">王者荣耀500点券快速充值秒速到账</div>
+                        <div class="buy-num">
+                            <span>153人购买</span>
+                        </div>
+                        <div class="price-box">
+                            <span class="unit">$</span><span class="price">69.00</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/swiper.js"></script>
+    <script>
+        apiready = function() {
+            fnInitSwiper();
+        }
+
+        function fnInitSwiper() {
+            var adSwiper = new Swiper('#slider', {
+                autoplay: {
+                    delay: 5000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: true,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    bulletClass: 'indicator',
+                    bulletActiveClass: 'indicator-active'
+                }
+            })
+
+            var likeSwiper = new Swiper('#like-swiper-container', {
+                slidesPerView: 'auto',
+                freeMode: true
+            })
+        }
+    </script>
+</body>
+
+</html>

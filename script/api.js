@@ -213,7 +213,7 @@
 
             return mark;
         }
-        
+
     };
     u.remove = function(el){
         if(el && el.parentNode){
@@ -331,7 +331,7 @@
                     break;
             }
         }
-        
+
     };
     u.prepend = function(el, html){
         if(!u.isElement(el)){
@@ -582,10 +582,18 @@
     };
 
 /*end*/
-    
+
+/* custom */
+u.fixTabBar = function(el){
+    if(!u.isElement(el)){
+        console.warn('$api.fixTabBar Function need el param, el param must be DOM Element');
+        return 0;
+    }
+    el.style.paddingBottom = api.safeArea.bottom + 'px';
+    return el.offsetHeight;
+}
+
 
     window.$api = u;
 
 })(window);
-
-

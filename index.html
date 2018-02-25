@@ -176,9 +176,10 @@
 </html>
 <script type="text/javascript" src="script/api.js"></script>
 <script type="text/javascript">
+
     apiready = function() {
         fnInit()
-        fnIniGroup();
+        fnIniGroup()
     }
 
     var headers, footers, footerHeight, currentIndex = 0;
@@ -202,10 +203,11 @@
     function fnIniGroup() {
         var frames = []
         for (var i = 0, len = headers.length; i < len; i++) {
+            var bgColor = i == 0 ? '#f6f7fc' : '#fff'
             frames.push({
                 name: 'frame' + i,
                 url: './html/frame' + i + '/frame' + i + '.html',
-                bgColor: '#f6f7fc',
+                bgColor: bgColor,
                 bounces: true
             })
         }

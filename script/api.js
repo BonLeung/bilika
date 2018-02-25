@@ -583,7 +583,8 @@
 
 /*end*/
 
-/* custom */
+/* custom start */
+// iphoneX 底部适配
 u.fixTabBar = function(el){
     if(!u.isElement(el)){
         console.warn('$api.fixTabBar Function need el param, el param must be DOM Element');
@@ -593,6 +594,7 @@ u.fixTabBar = function(el){
     return el.offsetHeight;
 }
 
+/* custom end */
 
     window.$api = u;
 

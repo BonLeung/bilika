@@ -87,7 +87,7 @@
             background-color: #fff;
             height: 49px;
             margin-top: 1px;
-            box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
         }
 
         #footer ul li {
@@ -179,7 +179,7 @@
 
     apiready = function() {
         fnInit()
-        fnIniGroup()
+        fnChange(0)
     }
 
     var headers, footers, footerHeight, currentIndex = 0;
@@ -200,6 +200,7 @@
         footerHeight = $api.offset(footer).h
     }
 
+    /*
     function fnIniGroup() {
         var frames = []
         for (var i = 0, len = headers.length; i < len; i++) {
@@ -226,6 +227,7 @@
 
         });
     }
+    */
 
     // 随意切换按钮
     function randomSwitchBtn(tag) {
@@ -240,6 +242,41 @@
     }
 
     // 切换底部导航
+    function fnChange(index) {
+        for (var i = 0; i < headers.length; i++) {
+            if (index === i) {
+                $api.addCls(headers[i], 'active')
+                $api.addCls(footers[i], 'active')
+            } else {
+                $api.removeCls(headers[i], 'active')
+                $api.removeCls(footers[i], 'active')
+
+                api.setFrameAttr({
+                    name: 'frame' + i,
+                    hidden: true
+                })
+            }
+        }
+
+        api.openFrame({
+            name: 'frame' + index,
+            url: './html/frame' + index + '/frame' + index + '.html',
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: $api.dom('#main').offsetHeight
+            },
+            bounces: true,
+            bgColor: 'rgba(0,0,0,0)',
+            vScrollBarEnabled: true,
+            hScrollBarEnabled: true
+        })
+
+    }
+
+    // 切换底部导航
+    /*
     function fnChange(index) {
         for (var i = 0; i < headers.length; i++) {
             if (index === i) {
@@ -267,5 +304,6 @@
             scroll: true
         })
     }
+    */
 
 </script>

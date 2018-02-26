@@ -61,7 +61,7 @@
             z-index: -1;
             border-radius: 8px;
             transform: scale(0.95);
-            background-image: linear-gradient(to top, rgba(238, 238, 238, 0), rgba(0, 0, 0, 0.5));
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.01));
         }
 
         .indicator {
@@ -237,6 +237,11 @@
             font-size: 14px;
             line-height: 20px;
             color: #292929;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .recommend-item .goods-detail .buy-num {
             margin-top: 10px;
@@ -274,6 +279,7 @@
                 <div class="bg-wrapper">
                     <img src="../../image/frame1/ads/ad01.png" alt="">
                 </div>
+                <div class="bg-shadow"></div>
             </div>
             <div class="swiper-slide slider-item">
                 <img src="../../image/frame1/ads/ad02.png" alt="">
@@ -287,6 +293,7 @@
                 <div class="bg-wrapper">
                     <img src="../../image/frame1/ads/ad03.png" alt="">
                 </div>
+                <div class="bg-shadow"></div>
             </div>
         </div>
         <div class="swiper-pagination"></div>
@@ -366,7 +373,7 @@
                         </div>
                     </div>
                     <div class="goods-detail">
-                        <div class="name">王者荣耀500点券快速充值秒速到账</div>
+                        <div class="name">王者荣耀500点券快速充值秒速到账王者荣耀500点券快速充值秒速到账</div>
                         <div class="buy-num">
                             <span>153人购买</span>
                         </div>

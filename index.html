@@ -258,6 +258,7 @@
             }
         }
 
+        var bgColor = index == 0 ? '#f6f7fc' : 'rgba(0,0,0,0)'
         api.openFrame({
             name: 'frame' + index,
             url: './html/frame' + index + '/frame' + index + '.html',
@@ -268,11 +269,10 @@
                 h: $api.dom('#main').offsetHeight
             },
             bounces: true,
-            bgColor: 'rgba(0,0,0,0)',
+            bgColor: bgColor,
             vScrollBarEnabled: true,
             hScrollBarEnabled: true
         })
-
     }
 
     // 切换底部导航

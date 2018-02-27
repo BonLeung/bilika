@@ -91,6 +91,9 @@
             -webkit-justify-content: center;
             align-items: center;
             -webkit-align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
         }
 
         #nav ul li>img {
@@ -302,11 +305,11 @@
         <ul class="flex-wrap">
             <li class="flex-wrap flex-vertical">
                 <img src="../../image/frame1/navs/nav01.png" alt="">
-                <span>支付宝</span>
+                <span>支付宝支付宝</span>
             </li>
             <li class="flex-wrap flex-vertical">
                 <img src="../../image/frame1/navs/nav02.png" alt="">
-                <span>微信</span>
+                <span>微信微信微信</span>
             </li>
             <li class="flex-wrap flex-vertical">
                 <img src="../../image/frame1/navs/nav03.png" alt="">
@@ -363,7 +366,7 @@
         <div class="recommend">
             <h2 class="common-title">热门推荐</h2>
             <ul class="recommend-list">
-                <li class="recommend-item">
+                <li class="recommend-item open-win" win="goods_detail" common="common">
                     <div class="image-wrapper">
                         <div class="img-box">
                             <img src="../../image/frame1/recommends/recommend01.png" alt="">
@@ -508,9 +511,11 @@
     </section>
     <script type="text/javascript" src="../../script/api.js"></script>
     <script type="text/javascript" src="../../script/swiper.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
     <script>
         apiready = function() {
             fnInitSwiper()
+            fnReadyOpenWin()
         }
 
         // 初始化轮播

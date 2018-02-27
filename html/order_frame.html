@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>订单详情</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .order-detail {
+            padding: 10px;
+            background: #f5f5f5;
+            color: #292929;
+        }
+        .goods-info-wrapper {
+            background: #fff;
+            border-radius: 4px;
+        }
+        .goods-info-wrapper .info .title {
+            padding-left: 10px;
+            height: 36px;
+            line-height: 36px;
+            font-size: 14px;
+        }
+        .goods-info-wrapper .info .content {
+            padding: 10px 20px 10px 10px;
+            background: #f8f8f8;
+            box-sizing: border-box;
+        }
+        .goods-info-wrapper .info .content .icon {
+            flex: 0 0 47px;
+            width: 47px;
+            height: 47px;
+        }
+        .goods-info-wrapper .info .content .goods-detail {
+            margin-left: 13px;
+            overflow: hidden;;
+        }
+        .goods-info-wrapper .info .content .goods-detail .name {
+            line-height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 14px;
+            color: #999;
+        }
+        .goods-info-wrapper .info .content .goods-detail .price {
+            line-height: 16px;
+            font-size: 12px;
+            color: #999;
+        }
+        .goods-info-wrapper .info .content .goods-detail .accounts ul li {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            line-height: 20px;
+            font-size: 14px;
+        }
+        .goods-info-wrapper .packets {
+            padding: 0 10px;
+        }
+        .goods-info-wrapper .packets .content {
+            justify-content: space-between;
+            height: 50px;
+            line-height: 50px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .goods-info-wrapper .packets .title {
+
+        }
+        .goods-info-wrapper .packets .packets-num {
+            color: #999;
+        }
+        .goods-info-wrapper .bill {
+            padding: 0 10px;
+        }
+        .goods-info-wrapper .bill .bill-item {
+            justify-content: space-between;
+            height: 40px;
+            line-height: 40px;
+        }
+        .goods-info-wrapper .amount-payable {
+            padding: 0 10px;
+        }
+        .goods-info-wrapper .amount-payable .content {
+            justify-content: space-between;
+            height: 50px;
+            line-height: 50px;
+        }
+        .goods-info-wrapper .amount-payable .content .title {
+            font-size: 14px;
+        }
+        .goods-info-wrapper .amount-payable .content .amount {
+            font-size: 16px;
+        }
+
+        .pay-way-wrapper,
+        .contact-way-wrapper {
+            margin-top: 10px;
+            border-radius: 4px;
+            background: #fff;
+        }
+        .contact-way-wrapper .contact-way-item {
+            padding: 10px
+        }
+        .contact-way-wrapper .contact-way-item .title {
+            margin-bottom: 10px;
+            line-height: 20px;
+            font-size: 14px;
+        }
+        .contact-way-wrapper .contact-way-item input {
+            width: 100%;
+            line-height: 25px;
+            font-size: 18px;
+            color: #999;
+        }
+        .pay-way-wrapper .title {
+            padding-left: 10px;
+            height: 36px;
+            line-height: 36px;
+        }
+        .pay-way-wrapper .payway-list {
+            padding: 0 10px;
+        }
+        .pay-way-wrapper .payway-list .payway-item {
+            height: 50px;
+            line-height: 50px;
+        }
+        .pay-way-wrapper .payway-list .payway-item .pay-name {
+          align-items: center;
+        }
+        .pay-way-wrapper .payway-list .payway-item .icon {
+          flex: 0 0 30px;
+          width: 30px;
+          height: 30px;
+          background: #ff0000;
+        }
+        .pay-way-wrapper .payway-list .payway-item .text {
+          padding-left: 23px;
+        }
+        .pay-way-wrapper .payway-list .payway-item .operators {
+          align-items: center;
+        }
+        .pay-way-wrapper .payway-list .payway-item .detail {
+          width: 40px;
+          height: 17px;
+          line-height: 17px;
+          text-align: center;
+          border-radius: 2px;
+          border: 1px solid #f05b8c;
+          font-size: 10px;
+          font-weight: 300;
+          color: #f05b8c;
+        }
+        .pay-way-wrapper .payway-list .payway-item .radio {
+          position: relative;
+          margin: 0 20px;
+          width: 17px;
+          height: 17px;
+          border-radius: 50%;
+          background-color: #f05b8c;
+          box-sizing: border-box;
+        }
+
+        #virtual-footer {
+          width: 100%;
+          height: 50px;
+          background: #f5f5f5;
+        }
+
+        #footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 50px;
+            background: #fff;
+        }
+        #footer .content {
+          position: relative;
+          font-size: 0;
+          padding-left: 10px;
+        }
+        #footer .content .title,
+        #footer .content .total-pay {
+          display: block;
+          float: left;
+          line-height: 50px;
+          font-family: PingFangSC;
+          font-size: 16px;
+        }
+        #footer .content .total-pay {
+          font-weight: 600;
+        }
+        #footer .topay-btn-wrapper {
+          position: absolute;
+          right: 10px;
+          top: -12px;
+          width: 115px;
+          height: 56px;
+          line-height: 56px;
+          text-align: center;
+          border-radius: 4px;
+          background-color: #f05b8c;
+          font-size: 18px;
+          color: #fff;
+        }
+        #footer .topay-btn-wrapper .content {
+          position: relative;
+        }
+
+        #footer .topay-btn-wrapper .bg-shadow {
+          position: absolute;
+          bottom: 0;
+          left: 8px;
+          width: 98px;
+          height: 42px;
+          border-radius: 8px;
+          -webkit-filter: blur(10px);
+          filter: blur(10px);
+          background-color: #f05b8c;
+          z-index: -1;
+        }
+
+        .red {
+            color: #e4393c;
+            font-weight: 500;
+        }
+        .pink {
+            color: #f05b8c;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+<body>
+      <div class="order-detail" id="container">
+          <div class="goods-info-wrapper">
+              <div class="info">
+                  <div class="title">商品信息</div>
+                  <div class="content flex-wrap">
+                      <div class="icon"></div>
+                      <div class="goods-detail flex-con">
+                          <div class="name">腾讯Q币QQ币Q点100元腾讯Q币QQ币Q点100元</div>
+                          <div class="price">
+                              <span class="unit-price">100.00USD</span>
+                              <span class="num">x2</span>
+                          </div>
+                          <div class="accounts">
+                              <ul>
+                                  <li>QQ号码:404151146@qq.com</li>
+                                  <li>QQ号码:404151146@qq.com</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="packets">
+                  <div class="content border-b-dotted flex-wrap">
+                      <div class="title">红包</div>
+                      <div class="packets-num">有两张可用 ></div>
+                  </div>
+              </div>
+              <div class="bill">
+                  <div class="content border-b-dotted">
+                      <ul class="bill-list">
+                          <li class="flex-wrap bill-item">
+                              <div class="name-box">
+                                  <span class="icon"></span>
+                                  <span class="name">商品总价</span>
+                              </div>
+                              <div class="money">$100.00USD</div>
+                          </li>
+                          <li class="flex-wrap bill-item">
+                              <div class="name-box">
+                                  <span class="icon"></span>
+                                  <span class="name">满减优惠</span>
+                              </div>
+                              <div class="money red">-$2.00USD</div>
+                          </li>
+                          <li class="flex-wrap bill-item">
+                              <div class="name-box">
+                                  <span class="icon"></span>
+                                  <span class="name">红包</span>
+                              </div>
+                              <div class="money red">-$2.00USD</div>
+                          </li>
+                          <li class="flex-wrap bill-item">
+                              <div class="name-box">
+                                  <span class="name">手续费</span>
+                              </div>
+                              <div class="money">$8.00USD</div>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="amount-payable">
+                  <div class="content flex-wrap">
+                      <div class="title">应付金额</div>
+                      <div class="amount pink">$170.48USD</div>
+                  </div>
+              </div>
+          </div>
+          <div class="contact-way-wrapper">
+              <ul class="contact-way-list">
+                  <li class="contact-way-item border-b">
+                          <div class="title">联系电话（必填）</div>
+                          <input type="number" placeholder="请输入您的联系电话">
+                  </li>
+                  <li class="contact-way-item">
+                          <div class="title">社交方式（选填）</div>
+                          <input type="number" placeholder="请输入您的WeChat或QQ号">
+                  </li>
+              </ul>
+          </div>
+          <div class="pay-way-wrapper">
+              <div class="title border-b">支付方式</div>
+              <ul class="payway-list">
+                  <li class="payway-item border-b-dotted flex-wrap">
+                      <div class="flex-con flex-wrap pay-name">
+                        <dic class="icon"></dic>
+                        <div class="text">Paypal支付</div>
+                      </div>
+                      <div class="flex-wrap operators">
+                        <div class="detail">详情</div>
+                        <div class="radio extend-click"></div>
+                      </div>
+                  </li>
+                  <li class="payway-item border-b-dotted flex-wrap">
+                      <div class="flex-con flex-wrap pay-name">
+                        <dic class="icon"></dic>
+                        <div class="text">Paypal支付</div>
+                      </div>
+                      <div class="flex-wrap operators">
+                        <div class="detail">详情</div>
+                        <div class="radio extend-click"></div>
+                      </div>
+                  </li>
+                  <li class="payway-item flex-wrap">
+                      <div class="flex-con flex-wrap pay-name">
+                        <dic class="icon"></dic>
+                        <div class="text">Paypal支付</div>
+                      </div>
+                      <div class="flex-wrap operators">
+                        <div class="detail">详情</div>
+                        <div class="radio extend-click"></div>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+          <div id="virtual-footer"></div>
+      </div>
+      <div id="footer">
+        <div class="content border-t">
+          <div class="title">应付金额：</div>
+          <div class="total-pay pink">$170.48USD</div>
+          <div class="topay-btn-wrapper">
+            <div class="topay-btn">
+              <div class="text">去支付</div>
+              <div class="bg-shadow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript" src="../script/common.js"></script>
+    <script>
+        apiready = function() {
+            $api.fixTabBar($api.byId('footer'));
+            $api.fixTabBar($api.byId('virtual-footer'));
+        }
+    </script>
+</body>
+</html>

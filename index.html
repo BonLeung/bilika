@@ -85,9 +85,8 @@
 
         #footer {
             background-color: #fff;
-            height: 49px;
-            margin-top: 1px;
-            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+            height: 50px;
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset;
         }
 
         #footer ul li {
@@ -175,11 +174,20 @@
 
 </html>
 <script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/common.js"></script>
 <script type="text/javascript">
 
     apiready = function() {
         fnInit()
         fnChange(0)
+        api.openWin({
+            name: 'goods_detail',
+            url: './html/goods_detail.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+
     }
 
     var headers, footers, footerHeight, currentIndex = 0;

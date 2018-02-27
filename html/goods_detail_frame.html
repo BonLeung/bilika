@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            background: #f5f5f5;
+            width: 100%;
+            min-height: 100%;
+            padding: 10px;
+            color: #292929;
+            box-sizing: border-box;
+        }
+        .content-item {
+            background: #fff;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .header {
+            padding: 10px;
+        }
+        .header .icon {
+            flex: 0 0 30px;
+            width: 30px;
+            height: 30px;
+            background: #ff0000;
+        }
+        .header .name {
+            width: 0;
+            padding-left: 10px;
+            line-height: 20px;
+            font-size: 16px;
+        }
+
+        .amount-select {
+            padding: 10px 5px;
+        }
+        .amount-list {
+            justify-content: space-between;
+            flex-wrap: wrap;;
+        }
+        .amount-item {
+            width: 33.33%;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+        .amount-item .content {
+            position: relative;
+            border: 1px solid #cdcdcd;
+            height: 55px;
+            line-height: 55px;
+            text-align: center;
+            border-radius: 2px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .amount-item.active .content {
+            background-color: #f05b8c;
+            border: none;
+            color: #fff;
+            z-index: 10;
+        }
+        .amount-item.active .content .bg-shadow {
+            position: absolute;
+            top: 7px;
+            left: 10px;
+            right: 10px;
+            bottom: 0;
+            border-radius: 2px;
+            -webkit-filter: blur(10px);
+            filter: blur(10px);
+            background-color: #f05b8c;
+            z-index: -1;
+        }
+
+        .service {
+            margin: 0 10px;
+            padding: 10px 0;
+            align-items: center;
+        }
+        .service .icon {
+            flex: 0 0 12px;
+            width: 12px;
+            height: 12px;
+            background: #ddd;
+        }
+        .service .service-list {
+            padding-left: 8px;
+        }
+        .service .service-item {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .currency,
+        .recharge {
+            align-items: center;
+            padding: 10px;
+        }
+        .currency .title,
+        .recharge .title {
+            font-weight: 300;
+            font-size: 14px;
+        }
+        .recharge .operator {
+            flex: 0 0 178px;
+            width: 178px;
+            height: 40px;
+            border-radius: 2px;
+        }
+        .recharge .operator .minus,
+        .recharge .operator .add {
+            flex: 0 0 40px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: #f3f3f3;
+            border: 1px solid #cdcdcd;
+            box-sizing: border-box;
+        }
+        .recharge .operator .minus {
+            border-right: none;
+        }
+        .recharge .operator .add {
+            border-left: none;
+        }
+        .recharge .operator .input {
+            flex: 0 0 98px;
+            width: 98px;
+        }
+        .recharge .operator .input input {
+            width: 98px;
+            height: 40px;
+            border: 1px solid #cdcdcd;
+            border-radius: 0;
+            /* 去掉浏览器默认样式 */
+            -webkit-appearance: none;
+            text-align: center;
+            box-sizing: border-box;
+            font-size: 18px;
+            color: #292929;
+        }
+
+        .currency {
+            justify-content: space-between;
+            line-height: 40px;
+        }
+        .currency .currency-select  {
+            align-items: center;
+        }
+        .currency .current-currency {
+            font-size: 14px;
+            font-weight: 300;
+        }
+        .currency .icon-arrow_right {
+            margin-left: 10px;
+            width: 6px;
+            height: 11px;
+            background: #ff0000;
+        }
+
+        .total-price {
+            padding: 10px;
+            justify-content: space-between;
+            line-height: 40px;
+            font-weight: normal;
+        }
+        .total-price .title {
+            font-size: 14px;
+        }
+        .total-price .price {
+            color: #f05b8c;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .total-price .unit {
+            color: #f05b8c;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="content-item">
+            <div class="header flex-wrap">
+                <div class="icon"></div>
+                <div class="name flex-con">支付宝100点券快速充值支付宝100点券快速充值</div>
+            </div>
+        </section>
+        <section class="content-item">
+            <div class="amount-select">
+                <ul class="amount-list flex-wrap">
+                    <li class="amount-item active">
+                        <div class="content">
+                            <div class="amount-num">50元</div>
+                            <div class="bg-shadow"></div>
+                        </div>
+                    </li>
+                    <li class="amount-item">
+                        <div class="content">
+                            <div class="amount-num">50元</div>
+                            <div class="bg-shadow"></div>
+                        </div>
+                    </li>
+                    <li class="amount-item">
+                        <div class="content">
+                            <div class="amount-num">50元</div>
+                            <div class="bg-shadow"></div>
+                        </div>
+                    </li>
+                    <li class="amount-item">
+                        <div class="content">
+                            <div class="amount-num">50元</div>
+                            <div class="bg-shadow"></div>
+                        </div>
+                    </li>
+                    <li class="amount-item">
+                        <div class="content">
+                            <div class="amount-num">50元</div>
+                            <div class="bg-shadow"></div>
+                        </div>
+                    </li>
+                    <li class="amount-item">
+                        <div class="content">
+                            <div class="amount-num">50元</div>
+                            <div class="bg-shadow"></div>
+                        </div>
+                    </li>
+                    <li class="amount-item">
+                        <div class="content">
+                            <div class="amount-num">50元</div>
+                            <div class="bg-shadow"></div>
+                        </div>
+                    </li>
+                    <li class="amount-item">
+                        <div class="content">
+                            <div class="amount-num">50元</div>
+                            <div class="bg-shadow"></div>
+                        </div>
+                    </li>
+                    <li class="amount-item">
+                        <div class="content">
+                            <div class="amount-num">50元</div>
+                            <div class="bg-shadow"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="service flex-wrap border-t-dotted">
+                <div class="icon"></div>
+                <ul class="service-list flex-wrap">
+                    <li class="service-item">･ 七天无理由退货</li>
+                    <li class="service-item">･ 极速发货</li>
+                    <li class="service-item">･ 信用卡保障</li>
+                    <li class="service-item">･ 个性化服务</li>
+                </ul>
+            </div>
+        </section>
+        <section class="content-item">
+            <div class="recharge flex-wrap border-b">
+                <div class="title flex-con">充值数量</div>
+                <div class="operator flex-wrap">
+                    <div class="minus">-</div>
+                    <div class="input">
+                        <input type="number" value="1">
+                    </div>
+                    <div class="add">+</div>
+                </div>
+            </div>
+            <div class="currency flex-wrap open-win" win="currency">
+                <div class="title">货币单位</div>
+                <div class="currency-select flex-wrap">
+                    <div class="current-currency">美元</div>
+                    <div class="icon-arrow_right extend-click"></div>
+                </div>
+            </div>
+        </section>
+        <section class="content-item">
+            <div class="total-price flex-wrap">
+                <div class="title">总价</div>
+                <div class="price-wrapper">
+                    <span class="price">59999.00</span>
+                    <span class="unit">美元</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript" src="../script/common.js"></script>
+    <script>
+        apiready = function() {
+            fnReady()
+        }
+    </script>
+</body>
+</html>

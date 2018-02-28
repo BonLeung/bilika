@@ -8,7 +8,67 @@ html,body {  font-size:14px; height:100%;  }
 .border-t,
 .border-b{ position:relative;  }
 .border-t:before,
-.border-b:after{     content: '';     position: absolute;     left: 0;  top:0;     background: #ddd;   right:0;    height: 1px;     -webkit-transform: scaleY(0.5);             transform: scaleY(0.5);     -webkit-transform-origin: 0 0;             transform-origin: 0 0; }
+.border-b:after{     content: '';     position: absolute;     left: 0;  top:0;     background: #cdcdcd;   right:0;    height: 1px;     -webkit-transform: scaleY(0.5);             transform: scaleY(0.5);     -webkit-transform-origin: 0 0;             transform-origin: 0 0; }
 .border-b:after{ top:auto; bottom:0;  }
 
 #wrap{ height: 100%; }
+
+.hv-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.border-b-dotted {
+    border-bottom: 1px dashed #979797;
+}
+.border-t-dotted {
+    border-top: 1px dashed #979797;
+}
+
+.extend-click::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    bottom: -10px;
+    right: -10px;
+}
+
+/* toast */
+toast-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: all 10s;
+    opacity: 0;
+}
+.toast-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 200px;
+    min-height: 85px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 999;
+}
+.toast-content .icon {
+    flex: 0 0 15px;
+    width: 15px;
+    height: 15px;
+}
+.toast-content .text {
+    padding-left: 6px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+}

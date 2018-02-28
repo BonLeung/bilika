@@ -48,6 +48,7 @@ function fnReadyOpenWin() {
     for (var i = 0; i < buttons.length; i++) {
         $api.attr(buttons[i], 'tapmode', 'highlight')
         buttons[i].onclick = function() {
+            event.stopPropagation()
             var target = $api.closest(event.target, '.open-win')
             var winName = $api.attr(target, 'win')
             var isNeedLogin = $api.attr(target, 'login')
@@ -97,8 +98,35 @@ function fnReadyFrame(params) {
             w: 'auto',
             h: api.winHeight - headerHeight - footerHeight
         },
-        pageParam: api.pageParam,
-        // vScrollBarEnabled: true,
-        // hScrollBarEnabled: true
+        pageParam: api.pageParam
     })
+}
+
+
+
+
+var toast_timer
+
+function fnBilikaToast(params) {
+    if (params) {
+        var text = params.text || '出错啦'
+    }
+
+    if (toast_timer) {
+        return
+    }
+
+    var html = '<div class="toast-mask" id="toast">' +
+                    '<div class="toast-content flex-wrap">' +
+                        '<div class="icon"></div>' +
+                        '<div class="text">' + text + '</div>' +
+                    '</div>' +
+                '</div>'
+    $api.append($api.dom('body'), html);
+
+    toast_timer = setTimeout(function() {
+        $api.byId('toast').remove()
+        clearTimeout(toast_timer)
+        toast_timer = null
+    }, 1500)
 }

@@ -72,19 +72,18 @@
             background-color: #f05b8c;
             z-index: -1;
         }
-
     </style>
 </head>
 <body>
     <div class="flex-wrap flex-vertical" id="wrap">
         <header id="header">
             <div class="event-back"></div>
-            <div class="title flex-con">商品详情</div>
+            <div class="title flex-con">填写账号</div>
         </header>
         <div id="main" class="flex-con"></div>
         <footer id="footer">
-            <div class="content open-win" win="write_account">
-                <div class="text">填写账号</div>
+            <div class="content" onclick="commitOrder()" tapmode="highlight">
+                <div class="text">提交订单</div>
                 <div class="bg-shadow"></div>
             </div>
         </footer>
@@ -98,6 +97,14 @@
             fnReadyFrame({
                 bgColor: '#f5f5f5'
             })
+        }
+
+        function commitOrder() {
+            api.execScript({
+                frameName: 'write_account_frame',
+                script: 'fnCommitOrder();'
+            });
+
         }
     </script>
 </body>

@@ -62,14 +62,16 @@
             line-height: 55px;
             text-align: center;
             border-radius: 2px;
-            font-size: 16px;
-            font-weight: 500;
         }
         .amount-item.active .content {
             background-color: #f05b8c;
             border: none;
             color: #fff;
             z-index: 10;
+        }
+        .amount-item .content  .amount-num {
+            font-size: 16px;
+            font-weight: 500;
         }
         .amount-item.active .content .bg-shadow {
             position: absolute;
@@ -83,22 +85,51 @@
             background-color: #f05b8c;
             z-index: -1;
         }
+        .customize-item .input-wrapper {
+            display: none;
+            padding: 0 20px;
+        }
+        .customize-item .input-wrapper input {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+        }
+        .customize-item .text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .customize-item.active .text,
+        .customize-item.edit .text {
+            display: none;
+        }
+        .customize-item .customize-money-text {
+            display: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .customize-item.active .customize-money-text {
+            display: block;
+        }
+        .customize-item.edit .input-wrapper {
+            display: block;
+        }
 
         .service {
             margin: 0 10px;
             padding: 10px 0;
-            align-items: center;
+            align-items: flex-start;
         }
         .service .icon {
             flex: 0 0 12px;
+            margin: 4px 0;
             width: 12px;
             height: 12px;
             background: #ddd;
         }
-        .service .service-list {
+        .service p {
             padding-left: 8px;
-        }
-        .service .service-item {
+            line-height: 20px;
             font-size: 12px;
             color: #999;
         }
@@ -165,6 +196,7 @@
             font-weight: 300;
         }
         .currency .icon-arrow_right {
+            position: relative;
             margin-left: 10px;
             width: 6px;
             height: 11px;
@@ -179,6 +211,7 @@
         }
         .total-price .title {
             font-size: 14px;
+            font-weight: 300;
         }
         .total-price .price {
             color: #f05b8c;
@@ -203,57 +236,63 @@
         <section class="content-item">
             <div class="amount-select">
                 <ul class="amount-list flex-wrap">
-                    <li class="amount-item active">
+                    <li class="amount-item active" onclick="fnSelectMoney(this)" tapmode="highlight">
                         <div class="content">
                             <div class="amount-num">50元</div>
                             <div class="bg-shadow"></div>
                         </div>
                     </li>
-                    <li class="amount-item">
+                    <li class="amount-item" onclick="fnSelectMoney(this)" tapmode="highlight">
                         <div class="content">
-                            <div class="amount-num">50元</div>
+                            <div class="amount-num">5元</div>
                             <div class="bg-shadow"></div>
                         </div>
                     </li>
-                    <li class="amount-item">
+                    <li class="amount-item" onclick="fnSelectMoney(this)" tapmode="highlight">
                         <div class="content">
-                            <div class="amount-num">50元</div>
+                            <div class="amount-num">10元</div>
                             <div class="bg-shadow"></div>
                         </div>
                     </li>
-                    <li class="amount-item">
+                    <li class="amount-item" onclick="fnSelectMoney(this)" tapmode="highlight">
                         <div class="content">
-                            <div class="amount-num">50元</div>
+                            <div class="amount-num">15元</div>
                             <div class="bg-shadow"></div>
                         </div>
                     </li>
-                    <li class="amount-item">
+                    <li class="amount-item" onclick="fnSelectMoney(this)" tapmode="highlight">
                         <div class="content">
-                            <div class="amount-num">50元</div>
+                            <div class="amount-num">20元</div>
                             <div class="bg-shadow"></div>
                         </div>
                     </li>
-                    <li class="amount-item">
+                    <li class="amount-item" onclick="fnSelectMoney(this)" tapmode="highlight">
                         <div class="content">
-                            <div class="amount-num">50元</div>
+                            <div class="amount-num">25元</div>
                             <div class="bg-shadow"></div>
                         </div>
                     </li>
-                    <li class="amount-item">
+                    <li class="amount-item" onclick="fnSelectMoney(this)" tapmode="highlight">
                         <div class="content">
-                            <div class="amount-num">50元</div>
+                            <div class="amount-num">30元</div>
                             <div class="bg-shadow"></div>
                         </div>
                     </li>
-                    <li class="amount-item">
+                    <li class="amount-item" onclick="fnSelectMoney(this)" tapmode="highlight">
                         <div class="content">
-                            <div class="amount-num">50元</div>
+                            <div class="amount-num">40元</div>
                             <div class="bg-shadow"></div>
                         </div>
                     </li>
-                    <li class="amount-item">
+                    <li class="amount-item customize-item" onclick="fnCustomizeMoney(this)" tapmode="highlight">
                         <div class="content">
-                            <div class="amount-num">50元</div>
+                            <div class="customize">
+                              <div class="text">自定金额</div>
+                              <div class="input-wrapper">
+                                <input type="text" id="customizeInput">
+                              </div>
+                              <div class="customize-money-text"></div>
+                            </div>
                             <div class="bg-shadow"></div>
                         </div>
                     </li>
@@ -261,23 +300,18 @@
             </div>
             <div class="service flex-wrap border-t-dotted">
                 <div class="icon"></div>
-                <ul class="service-list flex-wrap">
-                    <li class="service-item">･ 七天无理由退货</li>
-                    <li class="service-item">･ 极速发货</li>
-                    <li class="service-item">･ 信用卡保障</li>
-                    <li class="service-item">･ 个性化服务</li>
-                </ul>
+                <p>･ 七天无理由退货 ･ 极速发货 ･ 信用卡保障 ･ 个性化服务</p>
             </div>
         </section>
         <section class="content-item">
             <div class="recharge flex-wrap border-b">
                 <div class="title flex-con">充值数量</div>
                 <div class="operator flex-wrap">
-                    <div class="minus">-</div>
+                    <div class="minus" id="minus" tapmode="highlight" onclick="fnMinusRechargeNumber()">-</div>
                     <div class="input">
-                        <input type="number" value="1">
+                        <input id="numInput" type="number" value="1">
                     </div>
-                    <div class="add">+</div>
+                    <div class="add" id="add" tapmode="=highlight" onclick="fnAddRechargeNumber()">+</div>
                 </div>
             </div>
             <div class="currency flex-wrap open-win" win="currency">
@@ -304,7 +338,112 @@
     <script>
         apiready = function() {
             fnReady()
+            fnInitListener()
         }
+
+
+        function fnCustomizeMoney(el) {
+            if (!el) {
+                return
+            }
+            if ($api.hasCls(el, 'active')) {
+                $api.removeCls(el, 'active')
+            }
+            $api.addCls(el, 'edit')
+            $api.dom(el, 'input').focus()
+        }
+
+        function fnSelectMoney(el) {
+            if(!el) {
+              return
+            }
+            var amountItems = $api.domAll('.amount-item')
+            if ($api.hasCls(el, 'active')) {
+                return
+            }
+            for (var i = 0; i < amountItems.length; i++) {
+                if (amountItems[i] == el) {
+                    $api.addCls(amountItems[i], 'active')
+                } else {
+                    $api.removeCls(amountItems[i], 'active')
+                }
+
+                // 判断自定金额处于输入状态
+                if ($api.hasCls(amountItems[i], 'customize-item') && $api.hasCls(amountItems[i], 'edit')) {
+                    $api.removeCls(amountItems[i], 'edit')
+                    $api.val($api.dom(amountItems[i], 'input'), '')
+                    $api.dom(amountItems[i], 'input').blur()
+                }
+            }
+        }
+
+        function fnInitListener() {
+            // 自定金额输入框失去焦点对金额进行判断
+            $api.byId('customizeInput').addEventListener('blur', function(e) {
+                var customizeItem = $api.dom('.customize-item')
+                var value = e.target.value
+
+                if (value == '') {
+                    $api.removeCls(customizeItem, 'edit')
+                    return
+                }
+
+                if (/^(([0-9]|([1-9][0-9]{0,9}))((\.[0-9]{1,2})?))$/.test(value)) {
+                    fnSelectMoney(customizeItem)
+                    var text = value + '元'
+                    $api.text($api.dom('.customize-money-text'), text)
+                    $api.addCls($api.dom('.recharge'), 'disabled')
+                } else {
+                    fnBilikaToast({
+                      text: '请输入正确的金额'
+                    })
+                    $api.val(e.target, '')
+                }
+
+                $api.removeCls(customizeItem, 'edit')
+            })
+
+            // 充值数量输入框失去焦点对数量进行判断
+            $api.byId('numInput').addEventListener('blur', function(e) {
+                var value = e.target.value
+
+                if (value == '') {
+                  $api.val(e.target, 1)
+                  return
+                }
+
+                if (!/^[1-9]\d*$/.test(value)) {
+                    fnBilikaToast({
+                      text: '请输入正确的数量'
+                    })
+                    $api.val(e.target, '')
+                    e.target.focus()
+                }
+            })
+        }
+
+        // 点击➕充值数量+1
+        function fnAddRechargeNumber() {
+            var numInputEl = $api.byId('numInput')
+            var value = Number.parseInt(numInputEl.value)
+
+            value += 1
+            $api.val(numInputEl, value)
+        }
+
+        // 点击➖号数量减1
+        function fnMinusRechargeNumber() {
+            var numInputEl = $api.byId('numInput')
+            var value = Number.parseInt(numInputEl.value)
+
+            if (value == 1) {
+                return
+            }
+
+            value -= 1
+            $api.val(numInputEl, value)
+        }
+
     </script>
 </body>
 </html>

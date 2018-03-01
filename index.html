@@ -180,17 +180,10 @@
     apiready = function() {
         fnInit()
         fnChange(0)
-        api.openWin({
-            name: 'goods_detail',
-            url: './html/goods_detail.html',
-            pageParam: {
-                name: 'test'
-            }
-        });
-
     }
 
     var headers, footers, footerHeight, currentIndex = 0;
+    // 初始化适配
     function fnInit() {
         var header = $api.byId('header')
         var footer = $api.byId('footer')
@@ -209,6 +202,7 @@
     }
 
     /*
+    // 初始化 Frame 组
     function fnIniGroup() {
         var frames = []
         for (var i = 0, len = headers.length; i < len; i++) {

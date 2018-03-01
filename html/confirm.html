@@ -12,27 +12,106 @@
         html, body {
             width: 100%;
             height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
         }
         .confirm-mask {
             position: fixed;
             top: 0;
-            right: 10px;
-            bottom: 0
-            left: 10;
-
+            right: 0;
+            bottom: 0;
+            left: 0;
+            align-items: center;
+            justify-content: center;
         }
+        .confirm-content {
+            width: calc(100vw - 15px);
+            max-width: 345px;
+            background: #fff;
+            border-radius: 6px;
+        }
+        .icon-wrapper {
+            flex: 0 0 78px;
+            width: 78px;
+            height: 78px;
+            margin: 25px auto;
+        }
+        .icon-wrapper img {
+            width: 78px;
+            height: 78px;
+        }
+        .msg {
+            text-align: center;
+            line-height: 20px;
+            font-size: 14px;
+            color: #292929;
+        }
+        .btn-wrapper {
+            margin-top: 25px;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+        }
+        .btn-item {
+            height: 60px;
+            text-align: center;
+            color: #999;
+            font-size: 16px;
+        }
+
+        #btn-cancel {
+            background-color: #f05b8c;
+            color: #fff;
+            border-bottom-right-radius: 6px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="confirm-mask" id="confirm">
-        <div class="confirm-content">
-            <div class="icon"></div>
+    <div class="confirm-mask flex-wrap" id="confirm" onclick="fnCancel()" tapmode="highlight">
+        <div class="confirm-content flex-wrap flex-vertical">
+            <div class="icon-wrapper">
+                <img src="" alt="">
+            </div>
             <div class="msg">真的要走吗？</div>
-            <div class="btn-wrapper">
-                <div class="btn-item">返回</div>
-                <div class="btn-item">取消</div>
+            <div class="btn-wrapper flex-wrap">
+                <div class="btn-item flex-con border-t" id="btn-confirm" tapmode="highlight" onclick="fnConfirm()">返回</div>
+                <div class="btn-item flex-con" id="btn-cancel" tapmode="highlight" onclick="fnCancel()">取消</div>
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript" src="../script/common.js"></script>
+    <script>
+        apiready = function() {
+            fnInitListener()
+        }
+
+        function fnInitListener() {
+            api.addEventListener({
+                name: 'back',
+            }, function(ret, err){
+                if( ret ){
+                     alert( JSON.stringify( ret ) );
+                }else{
+                     alert( JSON.stringify( err ) );
+                }
+            });
+        }
+
+        function fnConfirm() {
+            api.sendEvent({
+                name: 'back',
+                extra: {
+                    key1: 'value1',
+                    key2: 'value2'
+                }
+            })
+            api.closeFrame()
+        }
+
+        function fnCancel() {
+            api.closeFrame()
+        }
+    </script>
 </body>
 </html>

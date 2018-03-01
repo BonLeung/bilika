@@ -108,25 +108,45 @@ function fnReadyFrame(params) {
 var toast_timer
 
 function fnBilikaToast(params) {
+    var msg = ''
     if (params) {
-        var text = params.text || '出错啦'
+        msg = params.msg || '出错啦'
     }
 
-    if (toast_timer) {
-        return
-    }
+    api.openFrame({
+        name: 'toast',
+        url: './toast.html',
+        rect: {
+            x: 0,
+            y: 0,
+            w: 'auto',
+            h: 'auto'
+        },
+        pageParam: {
+            name: 'toast',
+            msg: msg
+        },
+        bounces: false,
+        bgColor: 'rgba(0,0,0,0)',
+        vScrollBarEnabled: false,
+        hScrollBarEnabled: false
+    });
 
-    var html = '<div class="toast-mask" id="toast">' +
-                    '<div class="toast-content flex-wrap">' +
-                        '<div class="icon"></div>' +
-                        '<div class="text">' + text + '</div>' +
-                    '</div>' +
-                '</div>'
-    $api.append($api.dom('body'), html);
-
-    toast_timer = setTimeout(function() {
-        $api.byId('toast').remove()
-        clearTimeout(toast_timer)
-        toast_timer = null
-    }, 1500)
+    // if (toast_timer) {
+    //     return
+    // }
+    //
+    // var html = '<div class="toast-mask" id="toast">' +
+    //                 '<div class="toast-content flex-wrap">' +
+    //                     '<div class="icon"></div>' +
+    //                     '<div class="text">' + text + '</div>' +
+    //                 '</div>' +
+    //             '</div>'
+    // $api.append($api.dom('body'), html);
+    //
+    // toast_timer = setTimeout(function() {
+    //     $api.byId('toast').remove()
+    //     clearTimeout(toast_timer)
+    //     toast_timer = null
+    // }, 1500)
 }

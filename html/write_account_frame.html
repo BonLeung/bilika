@@ -43,7 +43,8 @@
             margin-left: 10px;
             width: 6px;
             height: 11px;
-            background: #ff0000;
+            background: url(../image/icon-arrow_right.png) no-repeat center;
+            background-size: 6px 11px;
         }
         .account-item {
             height: 60px;
@@ -70,6 +71,9 @@
             font-size: 14px;
             font-weight: 300;
             color: #292929;
+        }
+        input.error::input-placeholder {
+            color: #f05b8c;
         }
         input.error::-webkit-input-placeholder {
             color: #f05b8c;
@@ -164,15 +168,16 @@
 
         function fnCommitOrder() {
             var inputEls = $api.domAll('input')
+
             // 进行非空校验
-            for (var i =0; i < inputEls.length; i++) {
+            for (var i = 0; i < inputEls.length; i++) {
                 if ($api.attr(inputEls[i], 'isrequired')) {
                     var value = $api.val(inputEls[i])
                     if (value == '') {
-                        fnBilikaToast({
-                            text: '请填写账号资料'
-                        })
                         $api.addCls(inputEls[i], 'error')
+                        fnBilikaToast({
+                            msg: '请填写账号资料'
+                        })
                         return
                     }
                 }

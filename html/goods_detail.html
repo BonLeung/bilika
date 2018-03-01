@@ -25,7 +25,8 @@
             width: 44px;
             height: 44px;
             box-sizing: border-box;
-            background: #ff0000;
+            background: url(../image/icon-back.png) no-repeat center;
+            background-size: 10px 14px;
         }
 
         #header .title {
@@ -36,6 +37,36 @@
             color: #292929;
             font-family: STHeitiSC;
             letter-spacing: -1px;
+        }
+
+        #header .operator-wrapper {
+            position: absolute;
+            right: 10px;
+            bottom: 0;
+        }
+        #header .operator-wrapper span {
+            display: inline-block;
+            width: 20px;
+            height: 32px;
+            vertical-align: bottom;
+            margin-bottom: 6px;
+        }
+        #header .operator-wrapper .detail-btn {
+            background: url(../image/icon-detail.png) no-repeat center;
+            background-size: 20px 32px;
+            margin-right: 13px;
+        }
+        #header .operator-wrapper .detail-btn.active {
+            background: url(../image/icon-detail-active.png) no-repeat center;
+            background-size: 20px 32px;
+        }
+        #header .operator-wrapper .favorite-btn {
+            background: url(../image/icon-favorite.png) no-repeat center;
+            background-size: 20px 32px;
+        }
+        #header .operator-wrapper .favorite-btn.active {
+            background: url(../image/icon-favorite-active.png) no-repeat center;
+            background-size: 20px 32px;
         }
 
         #footer {
@@ -80,6 +111,10 @@
         <header id="header">
             <div class="event-back"></div>
             <div class="title flex-con">商品详情</div>
+            <div class="operator-wrapper">
+                <span class="detail-btn"></span>
+                <span class="favorite-btn"></span>
+            </div>
         </header>
         <div id="main" class="flex-con"></div>
         <footer id="footer">

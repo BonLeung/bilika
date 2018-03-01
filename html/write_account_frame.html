@@ -72,10 +72,16 @@
             font-weight: 300;
             color: #292929;
         }
-        input.error::input-placeholder {
+        /* 不知道为什么 iphoneX 上加上 border 后 placeholder 的样式才生效 */
+        input.error {
+            border-bottom: 1px solid #ff0000;
+            border-bottom-width: 0;
+        }
+
+        input.error::-webkit-input-placeholder {
             color: #f05b8c;
         }
-        input.error::-webkit-input-placeholder {
+        input.error::-moz-placeholder {
             color: #f05b8c;
         }
 
@@ -98,6 +104,8 @@
         .comment textarea {
             width: 100%;
             line-height: 20px;
+            font-size: 14px;
+            font-weight: 300;
         }
 
     </style>
@@ -139,7 +147,7 @@
         </section>
         <section class="content-item">
             <div class="comment flex-wrap">
-                <div class="title">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</div>
+                <div class="title" onclick="fnCommitOrder()">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</div>
                 <div class="textarea-wrapper flex-con">
                     <textarea name="comment" id="comment" placeholder="如有其它要求，可以在此处注明"></textarea>
                 </div>
@@ -174,10 +182,10 @@
                 if ($api.attr(inputEls[i], 'isrequired')) {
                     var value = $api.val(inputEls[i])
                     if (value == '') {
-                        $api.addCls(inputEls[i], 'error')
                         fnBilikaToast({
                             msg: '请填写账号资料'
                         })
+                        $api.addCls(inputEls[i], 'error')
                         return
                     }
                 }
@@ -189,7 +197,7 @@
                 pageParam: {
                     name: 'test'
                 }
-            });
+            })
 
         }
 

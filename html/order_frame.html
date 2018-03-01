@@ -38,6 +38,10 @@
             width: 47px;
             height: 47px;
         }
+        .goods-info-wrapper .info .content .icon img {
+            width: 100%;
+            height: 100%;
+        }
         .goods-info-wrapper .info .content .goods-detail {
             margin-left: 13px;
             overflow: hidden;;
@@ -77,6 +81,13 @@
         }
         .goods-info-wrapper .packets .packets-num {
             color: #999;
+        }
+        .goods-info-wrapper .packets .packets-num .icon-arrow_right {
+            margin-left: 10px;
+            width: 6px;
+            height: 11px;
+            background: url(../image/icon-arrow_right.png) no-repeat center;
+            background-size: 6px 11px;
         }
         .goods-info-wrapper .bill {
             padding: 0 10px;
@@ -119,6 +130,7 @@
             width: 100%;
             line-height: 25px;
             font-size: 18px;
+            font-weight: 300;
             color: #292929;
         }
         .pay-way-wrapper .title {
@@ -140,7 +152,14 @@
           flex: 0 0 30px;
           width: 30px;
           height: 30px;
-          background: #ff0000;
+        }
+        .pay-way-wrapper .payway-list .payway-item .icon.icon-paypal {
+            background: url(../image/icon-paypal.png) no-repeat center;
+            background-size: 30px 30px;
+        }
+        .pay-way-wrapper .payway-list .payway-item .icon.icon-western-union {
+            background: url(../image/icon-western-union.png) no-repeat center;
+            background-size: 30px 30px;
         }
         .pay-way-wrapper .payway-list .payway-item .text {
           padding-left: 23px;
@@ -165,8 +184,13 @@
           width: 17px;
           height: 17px;
           border-radius: 50%;
-          background-color: #f05b8c;
+          background: url(../image/icon-radio.png) no-repeat center;
+          background-size: 17px 17px;
           box-sizing: border-box;
+        }
+        .pay-way-wrapper .payway-list .payway-item .radio.active {
+            background: url(../image/icon-radio-active.png) no-repeat center;
+            background-size: 17px 17px;
         }
 
         #virtual-footer {
@@ -246,7 +270,9 @@
               <div class="info">
                   <div class="title">商品信息</div>
                   <div class="content flex-wrap">
-                      <div class="icon"></div>
+                      <div class="icon">
+                          <img src="../image/goods-image.png" alt="">
+                      </div>
                       <div class="goods-detail flex-con">
                           <div class="name">腾讯Q币QQ币Q点100元腾讯Q币QQ币Q点100元</div>
                           <div class="price">
@@ -265,7 +291,7 @@
               <div class="packets">
                   <div class="content border-b-dotted flex-wrap">
                       <div class="title">红包</div>
-                      <div class="packets-num">有两张可用 ></div>
+                      <div class="packets-num">有两张可用 <span class="icon-arrow_right"></span></div>
                   </div>
               </div>
               <div class="bill">
@@ -325,32 +351,32 @@
               <ul class="payway-list">
                   <li class="payway-item border-b-dotted flex-wrap">
                       <div class="flex-con flex-wrap pay-name">
-                        <dic class="icon"></dic>
+                        <dic class="icon icon-paypal"></dic>
                         <div class="text">Paypal支付</div>
                       </div>
                       <div class="flex-wrap operators">
                         <div class="detail">详情</div>
-                        <div class="radio extend-click"></div>
+                        <div class="radio active extend-click" onclick="fnSelectPayway(this)" tapmode="highlight"></div>
                       </div>
                   </li>
                   <li class="payway-item border-b-dotted flex-wrap">
                       <div class="flex-con flex-wrap pay-name">
-                        <dic class="icon"></dic>
-                        <div class="text">Paypal支付</div>
+                        <dic class="icon icon-paypal"></dic>
+                        <div class="text">Paypal信用卡支付</div>
                       </div>
                       <div class="flex-wrap operators">
                         <div class="detail">详情</div>
-                        <div class="radio extend-click"></div>
+                        <div class="radio extend-click" onclick="fnSelectPayway(this)" tapmode="highlight"></div>
                       </div>
                   </li>
                   <li class="payway-item flex-wrap">
                       <div class="flex-con flex-wrap pay-name">
-                        <dic class="icon"></dic>
-                        <div class="text">Paypal支付</div>
+                        <dic class="icon icon-western-union"></dic>
+                        <div class="text">西联汇款</div>
                       </div>
                       <div class="flex-wrap operators">
                         <div class="detail">详情</div>
-                        <div class="radio extend-click"></div>
+                        <div class="radio extend-click" onclick="fnSelectPayway(this)" tapmode="highlight"></div>
                       </div>
                   </li>
               </ul>
@@ -376,6 +402,21 @@
         apiready = function() {
             $api.fixTabBar($api.byId('footer'));
             $api.fixTabBar($api.byId('virtual-footer'));
+        }
+
+        function fnSelectPayway(el) {
+            if ($api.hasCls(el, 'active')) {
+                return
+            }
+            var radioEls = $api.domAll('.radio')
+            for (var i = 0; i < radioEls.length; i++) {
+                if (radioEls[i] == el) {
+                    $api.addCls(radioEls[i], 'active')
+                } else {
+                    $api.removeCls(radioEls[i], 'active')
+                }
+            }
+
         }
     </script>
 </body>

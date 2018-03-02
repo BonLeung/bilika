@@ -374,6 +374,97 @@
     <script>
         apiready = function() {
             fnReady()
+            fnInitListener()
+        }
+
+
+        function fnCustomizeMoney(el) {
+            if (!el) {
+                return
+            }
+            if ($api.hasCls(el, 'active')) {
+                $api.removeCls(el, 'active')
+            }
+            $api.addCls(el, 'edit')
+            $api.dom(el, 'input').focus()
+        }
+
+        function fnSelectMoney(el) {
+            if(!el) {
+              return
+            }
+            var amountItems = $api.domAll('.amount-item')
+            if ($api.hasCls(el, 'active')) {
+                return
+            }
+            for (var i = 0; i < amountItems.length; i++) {
+                if (amountItems[i] == el) {
+                    $api.addCls(amountItems[i], 'active')
+                } else {
+                    $api.removeCls(amountItems[i], 'active')
+                }
+
+                // 判断自定金额处于输入状态
+                if ($api.hasCls(amountItems[i], 'customize-item') && $api.hasCls(amountItems[i], 'edit')) {
+                    $api.removeCls(amountItems[i], 'edit')
+                    $api.val($api.dom(amountItems[i], 'input'), '')
+                    $api.dom(amountItems[i], 'input').blur()
+                }
+            }
+        }
+
+        function fnInitListener() {
+            // 自定金额输入框失去焦点对金额进行判断
+            $api.byId('customizeInput').addEventListener('blur', function(e) {
+                var customizeItem = $api.dom('.customize-item')
+                var value = e.target.value
+
+                if (value == '') {
+                    $api.removeCls(customizeItem, 'edit')
+                    return
+                }
+
+                if (/^(([0-9]|([1-9][0-9]{0,9}))((\.[0-9]{1,2})?))$/.test(value)) {
+                    fnSelectMoney(customizeItem)
+                    var text = value + '元'
+                    $api.text($api.dom('.customize-money-text'), text)
+                    $api.addCls($api.dom('.recharge'), 'disabled')
+                } else {
+                    fnBilikaToast({
+                      text: '请输入正确的金额'
+                    })
+                    $api.val(e.target, '')
+                }
+
+                $api.removeCls(customizeItem, 'edit')
+            })
+
+            // 充值数量输入框失去焦点对数量进行判断
+            $api.byId('numInput').addEventListener('blur', function(e) {
+                var value = e.target.value
+
+                if (value == '') {
+                  $api.val(e.target, 1)
+                  return
+                }
+
+                if (!/^[1-9]\d*$/.test(value)) {
+                    fnBilikaToast({
+                      text: '请输入正确的数量'
+                    })
+                    $api.val(e.target, '')
+                    e.target.focus()
+                }
+            })
+        }
+
+        // 点击➕充值数量+1
+        function fnAddRechargeNumber() {
+            var numInputEl = $api.byId('numInput')
+            var value = Number.parseInt(numInputEl.value)
+
+            value += 1
+            $api.val(numInputEl, value)
         }
 
 

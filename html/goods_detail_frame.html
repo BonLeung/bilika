@@ -374,7 +374,6 @@
     <script>
         apiready = function() {
             fnReady()
-            fnInitListener()
         }
 
 
@@ -387,12 +386,11 @@
             }
             $api.addCls(el, 'edit')
             $api.dom(el, 'input').focus()
+            $api.addCls($api.dom('.recharge'), 'disabled')
+            $api.attr($api.byId('numInput'), 'disabled', 'disabled')
         }
 
         function fnSelectMoney(el) {
-            if(!el) {
-              return
-            }
             var amountItems = $api.domAll('.amount-item')
             if ($api.hasCls(el, 'active')) {
                 return
@@ -409,57 +407,67 @@
                     $api.removeCls(amountItems[i], 'edit')
                     $api.val($api.dom(amountItems[i], 'input'), '')
                     $api.dom(amountItems[i], 'input').blur()
+                } else {
+                    $api.removeCls($api.dom('.recharge'), 'disabled')
+                    $api.removeAttr($api.byId('numInput'), 'disabled')
                 }
             }
         }
 
-        function fnInitListener() {
-            // 自定金额输入框失去焦点对金额进行判断
-            $api.byId('customizeInput').addEventListener('blur', function(e) {
-                var customizeItem = $api.dom('.customize-item')
-                var value = e.target.value
+        function fnNumInputBlur(el) {
+            var value = $api.val(el)
 
-                if (value == '') {
-                    $api.removeCls(customizeItem, 'edit')
-                    return
-                }
+            if (value == '') {
+              $api.val(el, 1)
+              return
+            }
 
-                if (/^(([0-9]|([1-9][0-9]{0,9}))((\.[0-9]{1,2})?))$/.test(value)) {
-                    fnSelectMoney(customizeItem)
-                    var text = value + '元'
-                    $api.text($api.dom('.customize-money-text'), text)
-                    $api.addCls($api.dom('.recharge'), 'disabled')
-                } else {
-                    fnBilikaToast({
-                      text: '请输入正确的金额'
-                    })
-                    $api.val(e.target, '')
-                }
-
-                $api.removeCls(customizeItem, 'edit')
-            })
-
-            // 充值数量输入框失去焦点对数量进行判断
-            $api.byId('numInput').addEventListener('blur', function(e) {
-                var value = e.target.value
-
-                if (value == '') {
-                  $api.val(e.target, 1)
-                  return
-                }
-
-                if (!/^[1-9]\d*$/.test(value)) {
-                    fnBilikaToast({
-                      text: '请输入正确的数量'
-                    })
-                    $api.val(e.target, '')
-                    e.target.focus()
-                }
-            })
+            if (!/^[1-9]\d*$/.test(value)) {
+                fnBilikaToast({
+                  text: '请输入正确的数量'
+                })
+                $api.val(el, '')
+                $api.removeCls($api.dom('.recharge'), 'disabled')
+                $api.removeAttr($api.byId('numInput'), 'disabled')
+            }
         }
 
-        // 点击➕充值数量+1
+        function fnCutomizeInputBlur(el) {
+            var customizeItem = $api.dom('.customize-item')
+            var value = $api.val(el)
+
+            // 去掉自定金额的输入状态
+            $api.removeCls(customizeItem, 'edit')
+
+            if (value == '') {
+                $api.removeCls($api.dom('.recharge'), 'disabled')
+                $api.removeAttr($api.byId('numInput'), 'disabled')
+                return
+            }
+
+            if (/^(([0-9]|([1-9][0-9]{0,9}))((\.[0-9]{1,2})?))$/.test(value)) {
+                fnSelectMoney(customizeItem)
+                var text = value + '元'
+                $api.text($api.dom('.customize-money-text'), text)
+                $api.addCls($api.dom('.recharge'), 'disabled')
+                $api.attr($api.byId('numInput'), 'disabled', 'disabled')
+            } else {
+                fnBilikaToast({
+                  text: '请输入正确的金额'
+                })
+                $api.val(el, '')
+                $api.removeCls($api.dom('.recharge'), 'disabled')
+                $api.removeAttr($api.byId('numInput'), 'disabled')
+            }
+
+        }
+
+        // 点击减号充值数量+1
         function fnAddRechargeNumber() {
+            // 判断是否禁止状态
+            if ($api.hasCls($api.dom('.recharge'), 'disabled')) {
+                return
+            }
             var numInputEl = $api.byId('numInput')
             var value = Number.parseInt(numInputEl.value)
 

@@ -8,18 +8,195 @@
     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
     <style>
-    .container {
-        display: flex;
-        justify-content: center;
-        height: 30px;
-        line-height: 30px;
-        font-size: 12px;
-        color: #999;
-        background: #f1f1f1;
+    body, html {
+        width: 100%;
+        height: 100%;
+        background: #eef1f4;
     }
+    .container {
+        background: #eef1f4;
+    }
+    header {
+        width: 100%;
+    }
+    .header-bar {
+        height: 40px;
+        width: cacl(100% - 20px);
+        background: #df668c;
+        padding: 0 10px;
+    }
+    .header-bar .setting-btn {
+        float: left;
+        width: 20px;
+        height: 40px;
+    }
+    .header-bar .customer-service-btn  {
+        float: right;
+        width: 20px;
+        height: 40px;
+    }
+    .header-content {
+        padding: 10px 10px 0;
+        width: 100%;
+        box-sizing: border-box;
+        background: #eef1f4;
+    }
+    .header-content .content {
+        background: #fff;
+        border-radius: 10px;
+        padding: 13px 0 18px 0;
+    }
+    .header-content .content .avatar {
+        justify-content: center;
+        margin-bottom: 6px;
+    }
+    .header-content .content .avatar img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #ff0000;
+    }
+    .header-content .content .name {
+        line-height: 20px;
+        text-align: center;
+        font-size: 12px;
+    }
+    .header-content .content .msg-wrapper {
+        margin-top: 28px;
+    }
+    .header-content .content .message,
+    .header-content .content .favorite {
+        justify-content: center;
+        line-height: 20px;
+    }
+    .header-content .content .favorite {
+        border-right: 1px solid #cdcdcd;
+    }
+    .header-content .content .msg-wrapper .num {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .header-content .content .msg-wrapper .text {
+        margin-left: 10px;
+        font-size: 12px;
+    }
+
+    .nav-wrapper {
+        padding: 0 10px;
+    }
+    .nav-wrapper .section {
+        margin-top: 20px;
+        background: #fff;
+        border-radius: 4px;
+    }
+    .nav-wrapper .section .nav-item {
+        height: 60px;
+        line-height: 60px;
+        border-bottom: 1px solid #e4e4e4;
+    }
+    .nav-wrapper .section .nav-item:last-child {
+        border-bottom: none;
+    }
+    .nav-wrapper .section .nav-item .title {
+        align-items: center;
+    }
+    .nav-wrapper .section .nav-item .icon {
+        width: 20px;
+        height: 20px;
+        margin-left: 20px;
+        background: #ff0000;
+    }
+    .nav-wrapper .section .nav-item .title .text {
+        padding-left: 12px;
+        font-size: 14px;
+        font-weight: 300;
+        color: #292929;
+    }
+    .nav-wrapper .section .nav-item .icon-arrow_right {
+        flex: 0 0 50px;
+        width: 50px;
+        height: 60px;
+        background: url(../../image/icon-arrow_right.png) no-repeat center;
+        background-size: 6px 11px;
+    }
+
+
     </style>
 </head>
 <body>
-    <div class="container" id="me">我的</div>
+    <div class="container" id="me">
+        <header>
+            <div class="header-bar">
+                <div class="setting-btn"></div>
+                <div class="customer-service-btn"></div>
+            </div>
+            <div class="header-content">
+                <div class="content flex-wrap flex-vertical">
+                    <div class="avatar flex-wrap">
+                        <img src="" alt="">
+                    </div>
+                    <div class="name">404151146@qq.com</div>
+                    <div class="msg-wrapper flex-wrap">
+                        <div class="favorite flex-wrap flex-con">
+                            <div class="num">80</div>
+                            <div class="text">收藏</div>
+                        </div>
+                        <div class="message flex-wrap flex-con">
+                            <div class="num">22</div>
+                            <div class="text">留言</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="main">
+            <div class="nav-wrapper">
+                <ul class="section-list">
+                    <li class="section">
+                        <div class="nav-item flex-wrap">
+                            <div class="title flex-wrap flex-con">
+                                <div class="icon"></div>
+                                <div class="text">我的订单</div>
+                            </div>
+                            <div class="icon-arrow_right"></div>
+                        </div>
+                        <div class="nav-item flex-wrap">
+                            <div class="title flex-wrap flex-con">
+                                <div class="icon"></div>
+                                <div class="text">优惠券</div>
+                            </div>
+                            <div class="icon-arrow_right"></div>
+                        </div>
+                    </li>
+                    <li class="section">
+                        <div class="nav-item flex-wrap">
+                            <div class="title flex-wrap flex-con">
+                                <div class="icon"></div>
+                                <div class="text">帮助中心</div>
+                            </div>
+                            <div class="icon-arrow_right"></div>
+                        </div>
+                        <div class="nav-item flex-wrap open-win" win="authenticate">
+                            <div class="title flex-wrap flex-con">
+                                <div class="icon"></div>
+                                <div class="text">认证中心</div>
+                            </div>
+                            <div class="icon-arrow_right"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script>
+        apiready = function() {
+            fnReady()
+            $api.fixStatusBar($api.dom('.header-bar'))
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>选择货币</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            width: 100%;
+            background: #f9f9f9;
+            min-height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .authenticate-way-list {
+            background: #fff;
+            border-radius: 4px;
+        }
+        .authenticate-way-list .authenticate-item {
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            border-bottom: 1px solid #cdcdcd;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .authenticate-way-list .authenticate-item:last-child {
+            border-bottom: none;
+        }
+        .authenticate-way-list .authenticate-item .name {
+            align-items: center;
+        }
+        .authenticate-way-list .authenticate-item .name .icon {
+            margin-right: 10px;
+            width: 12px;
+            height: 14px;
+            background: #ff0000;
+        }
+        .authenticate-way-list .authenticate-item .name .text {
+            font-size: 14px;
+            color: #292929;
+            line-height: 20px;
+        }
+        .authenticate-way-list .authenticate-item .recommend {
+            margin-right: 10px;
+            font-size: 14px;
+            color: #999;
+            line-height: 20px;
+        }
+        .authenticate-way-list .authenticate-item .icon-arrow_right {
+            width: 6px;
+            height: 11px;
+            background: url(../../image/icon-arrow_right.png) no-repeat center;
+            background-size: 6px 11px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="authenticate-way-list">
+            <li class="authenticate-item flex-wrap" onclick="selectAuthenticate(this)" tapmode="highlight" way="phone">
+                <div class="name flex-wrap flex-con">
+                    <div class="icon"></div>
+                    <div class="text flex-con">手机/电话认证</div>
+                </div>
+                <div class="recommend">推荐</div>
+                <div class="icon-arrow_right"></div>
+            </li>
+            <li class="authenticate-item flex-wrap" onclick="selectAuthenticate(this)" tapmode="highlight" way="certificate">
+                <div class="name flex-wrap flex-con">
+                    <div class="icon"></div>
+                    <div class="text flex-con">证件认证</div>
+                </div>
+                <div class="icon-arrow_right"></div>
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script>
+        apiready = function() {
+
+        }
+
+        function selectAuthenticate(el) {
+            var way = $api.attr(el, 'way')
+
+            api.openWin({
+                name: way + '_authenticate',
+                url: './' + way + '_authenticate.html',
+                pageParam: {
+                    name: 'test'
+                }
+            });
+
+        }
+    </script>
+</body>
+</html>

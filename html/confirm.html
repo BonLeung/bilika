@@ -14,16 +14,21 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
         }
+        #confirm {
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
         .confirm-mask {
             position: fixed;
             top: 0;
             right: 0;
             bottom: 0;
             left: 0;
-            align-items: center;
-            justify-content: center;
         }
         .confirm-content {
+            position: relative;
             width: calc(100vw - 15px);
             max-width: 345px;
             background: #fff;
@@ -64,10 +69,38 @@
             border-bottom-right-radius: 6px;
         }
 
+        .close-btn-wrapper {
+            position: absolute;
+            right: -4px;
+            top: -4px;
+            z-index: 102;
+        }
+        .close-btn {
+            width: 24px;
+            height: 24px;
+            background: #ff0000;
+            border-radius: 50%;
+            z-index: 999;
+        }
+
+        .bg-shadow {
+            position: absolute;
+            right: -4px;
+            top: -4px;
+            width: 24px;
+            height: 24px;
+            filter: blur(2px);
+            -webkit-filter: blur(2px);
+            background: rgb(0, 0, 0);
+            border-radius: 50%;
+            z-index: 101;
+        }
+
     </style>
 </head>
 <body>
-    <div class="confirm-mask flex-wrap" id="confirm" onclick="fnCancel()" tapmode="highlight">
+    <div class="flex-wrap" id="confirm">
+        <div class="confirm-mask" onclick="fnCancel()" tapmode="highlight"></div>
         <div class="confirm-content flex-wrap flex-vertical">
             <div class="icon-wrapper">
                 <img src="" alt="">
@@ -77,6 +110,10 @@
                 <div class="btn-item flex-con border-t" id="btn-confirm" tapmode="highlight" onclick="fnConfirm()">返回</div>
                 <div class="btn-item flex-con" id="btn-cancel" tapmode="highlight" onclick="fnCancel()">取消</div>
             </div>
+            <div class="close-btn-wrapper">
+                <div class="close-btn"></div>
+            </div>
+            <div class="bg-shadow"></div>
         </div>
     </div>
     <script type="text/javascript" src="../script/api.js"></script>
@@ -109,7 +146,7 @@
             api.closeFrame()
         }
 
-        function fnCancel() {
+        function fnCancel(el) {
             api.closeFrame()
         }
     </script>

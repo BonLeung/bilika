@@ -97,6 +97,22 @@
             height: 40px;
             line-height: 40px;
         }
+        .goods-info-wrapper .bill .bill-item .icon {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 12px;
+            margin-right: 5px;
+            width: 15px;
+            height: 15px;
+        }
+        .goods-info-wrapper .bill .bill-item .icon.icon-full {
+            background: url(../image/icon-full.png) no-repeat center;
+            background-size: 15px 15px;
+        }
+        .goods-info-wrapper .bill .bill-item .icon.icon-packet {
+            background: url(../image/icon-packet.png) no-repeat center;
+            background-size: 15px 15px;
+        }
         .goods-info-wrapper .amount-payable {
             padding: 0 10px;
         }
@@ -162,31 +178,28 @@
             background-size: 30px 30px;
         }
         .pay-way-wrapper .payway-list .payway-item .text {
-          padding-left: 23px;
+            padding-left: 23px;
         }
         .pay-way-wrapper .payway-list .payway-item .operators {
-          align-items: center;
+            align-items: center;
         }
         .pay-way-wrapper .payway-list .payway-item .detail {
-          width: 40px;
-          height: 17px;
-          line-height: 17px;
-          text-align: center;
-          border-radius: 2px;
-          border: 1px solid #f05b8c;
-          font-size: 10px;
-          font-weight: 300;
-          color: #f05b8c;
+            position: relative;
+            margin-left: 10px;
+            width: 12px;
+            height: 12px;
+            background: url(../image/icon-tips-fill.png) no-repeat center;
+            background-size: 12px 12px;
         }
         .pay-way-wrapper .payway-list .payway-item .radio {
-          position: relative;
-          margin: 0 20px;
-          width: 17px;
-          height: 17px;
-          border-radius: 50%;
-          background: url(../image/icon-radio.png) no-repeat center;
-          background-size: 17px 17px;
-          box-sizing: border-box;
+            position: relative;
+            margin: 0 20px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: url(../image/icon-radio.png) no-repeat center;
+            background-size: 17px 17px;
+            box-sizing: border-box;
         }
         .pay-way-wrapper .payway-list .payway-item .radio.active {
             background: url(../image/icon-radio-active.png) no-repeat center;
@@ -299,21 +312,20 @@
                       <ul class="bill-list">
                           <li class="flex-wrap bill-item">
                               <div class="name-box">
-                                  <span class="icon"></span>
                                   <span class="name">商品总价</span>
                               </div>
                               <div class="money">$100.00USD</div>
                           </li>
                           <li class="flex-wrap bill-item">
                               <div class="name-box">
-                                  <span class="icon"></span>
+                                  <span class="icon icon-full"></span>
                                   <span class="name">满减优惠</span>
                               </div>
                               <div class="money red">-$2.00USD</div>
                           </li>
                           <li class="flex-wrap bill-item">
                               <div class="name-box">
-                                  <span class="icon"></span>
+                                  <span class="icon icon-packet"></span>
                                   <span class="name">红包</span>
                               </div>
                               <div class="money red">-$2.00USD</div>
@@ -353,9 +365,9 @@
                       <div class="flex-con flex-wrap pay-name">
                         <dic class="icon icon-paypal"></dic>
                         <div class="text">Paypal支付</div>
+                        <div class="detail extend-click"></div>
                       </div>
                       <div class="flex-wrap operators">
-                        <div class="detail">详情</div>
                         <div class="radio active extend-click" onclick="fnSelectPayway(this)" tapmode="highlight"></div>
                       </div>
                   </li>
@@ -363,9 +375,9 @@
                       <div class="flex-con flex-wrap pay-name">
                         <dic class="icon icon-paypal"></dic>
                         <div class="text">Paypal信用卡支付</div>
+                        <div class="detail extend-click"></div>
                       </div>
                       <div class="flex-wrap operators">
-                        <div class="detail">详情</div>
                         <div class="radio extend-click" onclick="fnSelectPayway(this)" tapmode="highlight"></div>
                       </div>
                   </li>
@@ -373,9 +385,9 @@
                       <div class="flex-con flex-wrap pay-name">
                         <dic class="icon icon-western-union"></dic>
                         <div class="text">西联汇款</div>
+                        <div class="detail extend-click"></div>
                       </div>
                       <div class="flex-wrap operators">
-                        <div class="detail">详情</div>
                         <div class="radio extend-click" onclick="fnSelectPayway(this)" tapmode="highlight"></div>
                       </div>
                   </li>
